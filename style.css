@@ -1,7 +1,10 @@
 .grid{
     display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap:4%;
     height: 80vh;
     width: 100vw;
+    padding:5%;
 }
 
 .container{
@@ -14,4 +17,8 @@
 .addBook{
     display: flex;
     justify-content:space-around;
+}
+
+.card{
+    background-color: whitesmoke;
 }
