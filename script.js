@@ -17,7 +17,7 @@ function libraryPrompt(){
     let title = "";
     let pages = 0;
 
-    // while empty str or null return to reprompt
+    // loops until author is not null
     while (!author) {
         author = prompt("What is the author?");
         if (author === null) return;
@@ -49,14 +49,38 @@ function libraryPrompt(){
 
 function addToLibrary(author, title, pages,read) {
     let bookToAdd = new Book(author, title, pages,read);
-    let viewLibrary = document.querySelector(".grid");
-    let viewBook = document.createElement("div");
     library.push(bookToAdd);
+
+    let viewLibrary = document.querySelector(".grid");
+
+    let viewBook = document.createElement("div");
     viewBook.classList.add("card");
     viewBook.textContent = `${bookToAdd.title}`;
     viewBook.id = bookToAdd.id;
+
+    // Create a button to remove this book from the library
+    let delButton = document.createElement("button")
+    delButton.classList.add("delButton");
+    delButton.textContent = `Remove from library`;
+
     viewLibrary.appendChild(viewBook);
+    viewBook.appendChild(delButton);
+
+    // On click, remove this book from both the DOM and the library array
+    delButton.addEventListener("click", () => {
+        removeFromLibrary(bookToAdd.id);
+    });
 }
+
+function removeFromLibrary(id) {
+    const deleteBook = document.getElementById(id)
+
+    // Guard against a missing element, then remove the book card from the DOM
+    if (deleteBook) deleteBook.remove();
+
+    // Remove the book with the matching id from the library array
+    library = library.filter(book => book.id !== id);
+}   
 
 function inLibrary() {
     library.forEach(element => {
@@ -73,3 +97,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //todo
 // simplify error handling
+// add read button.
