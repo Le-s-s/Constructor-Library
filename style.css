@@ -24,5 +24,19 @@
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    padding:20%;
+    padding:10%;
+    align-items:center;
+}
+
+.card h1{
+    font-size:10vh;
+}
+
+.card h2{
+    font-size:5vh;
+}
+
+.card .delButton {
+    height:10vh;
+    font-size:5vh;
 }
