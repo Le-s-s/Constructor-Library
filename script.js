@@ -55,8 +55,15 @@ function addToLibrary(author, title, pages,read) {
 
     let viewBook = document.createElement("div");
     viewBook.classList.add("card");
-    viewBook.textContent = `${bookToAdd.title}`;
     viewBook.id = bookToAdd.id;
+
+    // creates text content of cards
+    let bookTitle = document.createElement("h1")
+    let bookAuthor = document.createElement("h2")
+    let bookPages = document.createElement("h2")
+    bookTitle.textContent = `${bookToAdd.title}`;
+    bookAuthor.textContent =  `by  ${bookToAdd.author}`
+    bookPages.textContent = `Page count ${bookToAdd.pages}`
 
     // Create a button to remove this book from the library
     let delButton = document.createElement("button")
@@ -64,6 +71,9 @@ function addToLibrary(author, title, pages,read) {
     delButton.textContent = `Remove from library`;
 
     viewLibrary.appendChild(viewBook);
+    viewBook.appendChild(bookTitle);
+    viewBook.appendChild(bookAuthor);
+    viewBook.appendChild(bookPages);
     viewBook.appendChild(delButton);
 
     // On click, remove this book from both the DOM and the library array
