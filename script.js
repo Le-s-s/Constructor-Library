@@ -70,15 +70,37 @@ function addToLibrary(author, title, pages,read) {
     delButton.classList.add("delButton");
     delButton.textContent = `Remove from library`;
 
+    // Creates checkbox for showcasing read status.
+    let readButton = document.createElement("input")
+    readButton.type = 'checkbox'
+    readButton.classList.add("readButton");
+    readButton.id = `read-${bookToAdd.id}`;
+
+    // creates label for read Button
+    const readLabel = document.createElement("label");
+    readLabel.setAttribute("for", readButton.id);
+    readLabel.innerHTML = "Have you read this?";
+    
+
+    if (bookToAdd.read) readButton.checked = true;
+
     viewLibrary.appendChild(viewBook);
     viewBook.appendChild(bookTitle);
     viewBook.appendChild(bookAuthor);
     viewBook.appendChild(bookPages);
+    viewBook.appendChild(readLabel); 
+    viewBook.appendChild(readButton);
     viewBook.appendChild(delButton);
+      
 
     // On click, remove this book from both the DOM and the library array
     delButton.addEventListener("click", () => {
         removeFromLibrary(bookToAdd.id);
+    });
+
+    // On click, remove this book from both the DOM and the library array
+    readButton.addEventListener("click", (e) => {
+        isRead(bookToAdd.id, e.target.checked);
     });
 }
 
@@ -92,10 +114,18 @@ function removeFromLibrary(id) {
     library = library.filter(book => book.id !== id);
 }   
 
+// find's book with matching id and sets it's 
+// read status to the status of the checkbox.
+function isRead(id,checked) {
+    const book = library.find(book => book.id === id);
+    if (book) book.read = checked;
+}
+
 function inLibrary() {
     library.forEach(element => {
         alert(element.info);
         alert(element.id);
+        alert(element.read)
     });
 }   
 
@@ -106,5 +136,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //todo
-// simplify error handling
-// add read button.
+// add more error handling
