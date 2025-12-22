@@ -40,3 +40,12 @@
     height:10vh;
     font-size:5vh;
 }
+
+.card .readButton {
+    height:5vh;
+    width:5vw;
+}
+
+.card label {
+     font-size:3vh;       
+}
