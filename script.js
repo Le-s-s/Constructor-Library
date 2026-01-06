@@ -1,16 +1,18 @@
 let library = [];
 
 
-
-function Book(author, title, pages, read) {
-    if (!new.target) throw new Error("This is a constructor.");
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-    this.info = `${title} by ${author}, it's ${pages} pages.`;
-    this.id = crypto.randomUUID();
+class Book{
+    constructor(author, title, pages, read) {
+        if (!new.target) throw new Error("This is a constructor.");
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read;
+        this.info = `${title} by ${author}, it's ${pages} pages.`;
+        this.id = crypto.randomUUID();
+    }
 }
+
 
 function libraryPrompt(){
     let author = "";
